@@ -11,24 +11,24 @@ except ImportError:
 def main():
     """
     Usage:
-      copy.py [-r] [--md <OUTPUT.md>] [--summary "your summary"] <file or directory or file:range> [<file or directory or file:range> ...]
+      yaink [-r] [--md <OUTPUT.md>] [--summary "your summary"] <file or directory or file:range> [<file or directory or file:range> ...]
     
     Examples:
       1) Copy to clipboard (default):
-         copy.py file1.js file2.go:1-50 file3.rs:10-20
+         yaink file1.js file2.go:1-50 file3.rs:10-20
 
       2) Write to a markdown file (--md):
-         copy.py --md output.md file1.js file2.go:1-50
+         yaink --md output.md file1.js file2.go:1-50
 
       3) Recursively process all files in a directory:
-         copy.py -r directory
+         yaink -r directory
 
       4) Add a summary:
-         copy.py --summary "This is a summary" file1.js file2.go
+         yaink --summary "This is a summary" file1.js file2.go
     """
 
     if len(sys.argv) < 2:
-        print("Usage: copy.py [-r] [--md <OUTPUT.md>] [--summary \"your summary\"] <file or directory or file:range> ...")
+        print("Usage: yaink [-r] [--md <OUTPUT.md>] [--summary \"your summary\"] <file or directory or file:range> ...")
         sys.exit(1)
 
     args = sys.argv[1:]
