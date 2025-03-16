@@ -11,36 +11,32 @@ except ImportError:
 def main():
     """
     Usage:
-      yaink [-r] [--md <OUTPUT.md>] [--summary "your summary"] <file or directory or file:range> [<file or directory or file:range> ...]
-    
-    Examples:
-      1) Copy to clipboard (default):
-         yaink file1.js file2.go:1-50 file3.rs:10-20
-
-      2) Write to a markdown file (--md):
-         yaink --md output.md file1.js file2.go:1-50
-
-      3) Recursively process all files in a directory:
-         yaink -r directory
-
-      4) Add a summary:
-         yaink --summary "This is a summary" file1.js file2.go
+      yaink [-r] [-m <OUTPUT.md>] [-s "your summary"] [-i "file_or_directory1,file_or_directory2"] <file or directory or file:range> [<file or directory or file:range> ...]
     """
 
     if len(sys.argv) < 2:
-        print("Usage: yaink [-r] [--md <OUTPUT.md>] [--summary \"your summary\"] <file or directory or file:range> ...")
+        print("Usage: yaink [-r] [-m <OUTPUT.md>] [-s \"your summary\"] [-i \"file_or_directory1,file_or_directory2\"] <file or directory or file:range> ...")
         sys.exit(1)
 
     args = sys.argv[1:]
     output_file = None
     recursive = False
     summary = None
+    ignore_list = set()
     file_specs = []
 
+    flag_aliases = {
+        '-r': '--recursive',
+        '-m': '--md',
+        '-s': '--summary',
+        '-i': '--ignore'
+    }
+    args = [flag_aliases.get(arg, arg) for arg in args]
+
     # Recursive flag
-    if '-r' in args:
+    if '--recursive' in args:
         recursive = True
-        args.remove('-r')
+        args.remove('--recursive')
 
     # Output file flag
     if '--md' in args:
@@ -60,6 +56,15 @@ def main():
         summary = args[summary_index + 1]
         del args[summary_index:summary_index + 2]
 
+    # Ignore flag
+    if '--ignore' in args:
+        ignore_index = args.index('--ignore')
+        if ignore_index + 1 >= len(args):
+            print("Error: You used '--ignore' but did not specify any files or directories.")
+            sys.exit(1)
+        ignore_list.update(args[ignore_index + 1].split(','))
+        del args[ignore_index:ignore_index + 2]
+
     # File specs
     file_specs = args
 
@@ -69,21 +74,30 @@ def main():
 
     if output_file is None and not PYPERCLIP_AVAILABLE:
         print("Error: pyperclip is not installed for clipboard copying. Install via 'pip install pyperclip',")
-        print("or use the '--md <OUTPUT.md>' option to write to a file instead.")
+        print("or use the '-m <OUTPUT.md>' option to write to a file instead.")
         sys.exit(1)
 
     content = []
 
     def add_snippet_block(header, code):
-        content.append(f"{header}:\n```\n{code}\n```\n")
+        if code.strip():
+            content.append(f"{header}:\n```\n{code}\n```\n")
 
     def process_file(filepath, line_range=None):
+        if filepath in ignore_list:
+            print(f"Ignoring: {filepath}")
+            return
+
         if not os.path.isfile(filepath):
             print(f"Skipping: file '{filepath}' not found.")
             return
 
-        with open(filepath, 'r', encoding='utf-8') as f_in:
-            content_lines = f_in.readlines()
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f_in:
+                content_lines = f_in.readlines()
+        except UnicodeDecodeError:
+            print(f"Skipping non-UTF-8 file: {filepath}")
+            return
 
         if line_range:
             start_line, end_line = line_range
@@ -99,8 +113,17 @@ def main():
 
     def process_directory(directory):
         for root, _, files in os.walk(directory):
+            if root in ignore_list:
+                print(f"Ignoring directory: {root}")
+                continue
+
             for file in files:
-                process_file(os.path.join(root, file))
+                filepath = os.path.join(root, file)
+                if filepath in ignore_list:
+                    print(f"Ignoring file: {filepath}")
+                    continue
+                process_file(filepath)
+
             if not recursive:
                 break
 
