@@ -1,19 +1,23 @@
-# yaink
+## Overview
 
-`yaink` is a command-line utility for extracting code snippets from files and directories, copying them to the clipboard or saving to a markdown file.
+`yaink` is a simple command-line tool for extracting file contents to be used as input to LLMs.
 
-## Install
+## Motivation
 
-Install `yaink` using `pip`:
+The developer AI workflow is messy. There are _many_ different tools that integrate across the stages of development. Some tools are more powerful, but heavyweight and expensive than others. `yaink` is a pragmatic solution to this problem.
+
+## Installation
+
+Install with `pip`:
 
 ```sh
 pip install yaink
 ```
 
-Or, install from source:
+Alternatively, install from source:
 
 ```sh
-git clone https://github.com/yourusername/yaink.git
+git clone https://github.com/williamgrosset/yaink.git
 cd yaink
 pip install .
 ```
@@ -25,10 +29,11 @@ yaink [-r] [--md <OUTPUT.md>] [--summary "your summary"] [--ignore "file_or_dire
 ```
 
 ### Options
-- `[-r | --recursive]` : Recursively process directories.
-- `[-md | --markdown] <OUTPUT.md>` : Save extracted content to the specified markdown file.
-- `[-s | --summary] "your summary"` : Add a summary at the beginning of the output.
-- `[-i | --ignore] "file_or_directory1,file_or_directory2"` : Ignore specific files or directories.
+
+- `[-r | --recursive]`: Recursively process directories.
+- `[-md | --markdown] <OUTPUT.md>`: Save content to the specified markdown file.
+- `[-s | --summary] "your summary"`: Add a summary at the beginning of the output.
+- `[-i | --ignore] "file_or_directory1,file_or_directory2"`: Ignore specific files or directories.
 
 ### Examples
 
@@ -63,4 +68,5 @@ yaink -s "Important snippets" src/
 ```
 
 ## License
+
 MIT
