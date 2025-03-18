@@ -4,7 +4,7 @@
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ different tools that integrate across the stages of development. Some tools are more powerful, but heavyweight and expensive than others. `yaink` is a pragmatic solution to this problem.
+The developer AI workflow is messy. There are _many_ tools that integrate across the stages of development. Some tools are more powerful, but heavyweight (and expensive) than others. `yaink` is designed to be a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you want.
 
 ## Installation
 
@@ -64,7 +64,7 @@ yaink -md snippets.md myfile.py
 
 #### Provide a summary
 ```sh
-yaink -s "Important snippets" src/
+yaink -s "Add a login button" src/
 ```
 
 ## License
