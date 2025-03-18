@@ -4,7 +4,7 @@
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ tools that integrate across the stages of development. Some tools are more powerful, but heavyweight (and expensive) than others. `yaink` is designed to be a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you want.
+The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development. Some tools are more powerful, but heavyweight (and expensive) than others. `yaink` is designed to be a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you want.
 
 ## Installation
 
@@ -55,6 +55,11 @@ yaink src/ myfile.py otherfile.py
 #### Extract recursively from a directory
 ```sh
 yaink -r src/
+```
+
+#### Ignore files
+```sh
+yaink -r src/ -i ".git,.gitignore"
 ```
 
 #### Save output to a markdown file
