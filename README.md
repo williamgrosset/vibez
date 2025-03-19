@@ -4,7 +4,7 @@
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and at different parts of the stack. Some tools are more powerful, but heavyweight (and expensive). For most prompts, these tools don't actually need that much [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `yaink` is designed to be a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you want.
+The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and at different parts of the stack. Some tools are more powerful, but heavyweight and expensive. For most prompts, these tools don't actually need that much [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `yaink` is designed to be a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you want.
 
 ## Installation
 
@@ -25,7 +25,7 @@ pip install .
 ## Usage
 
 ```sh
-yaink [-r] [--md <OUTPUT.md>] [--summary "your summary"] [--ignore "file_or_directory1,file_or_directory2"] <file or directory or file:range> [...]
+yaink [-r] [-md <OUTPUT.md>] [-s "your summary"] [-i "file_or_directory1,file_or_directory2"] <file or directory or file:range> [...]
 ```
 
 ### Options
