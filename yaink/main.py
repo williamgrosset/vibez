@@ -11,11 +11,11 @@ except ImportError:
 def main():
     """
     Usage:
-      yaink [-r] [-m <OUTPUT.md>] [-s "your summary"] [-i "file_or_directory1,file_or_directory2"] <file or directory or file:range> [<file or directory or file:range> ...]
+      yaink [-r] [-o <OUTPUT.md>] [-s "your summary"] [-i "file_or_directory1,file_or_directory2"] <file or directory or file:range> [<file or directory or file:range> ...]
     """
 
     if len(sys.argv) < 2:
-        print("Usage: yaink [-r] [-m <OUTPUT.md>] [-s \"your summary\"] [-i \"file_or_directory1,file_or_directory2\"] <file or directory or file:range> ...")
+        print("Usage: yaink [-r] [-o <OUTPUT.md>] [-s \"your summary\"] [-i \"file_or_directory1,file_or_directory2\"] <file or directory or file:range> ...")
         sys.exit(1)
 
     args = sys.argv[1:]
@@ -27,9 +27,9 @@ def main():
 
     flag_aliases = {
         '-r': '--recursive',
-        '-m': '--md',
-        '-s': '--summary',
-        '-i': '--ignore'
+        '-i': '--ignore',
+        '-o': '--output',
+        '-s': '--summary'
     }
     args = [flag_aliases.get(arg, arg) for arg in args]
 
@@ -37,24 +37,6 @@ def main():
     if '--recursive' in args:
         recursive = True
         args.remove('--recursive')
-
-    # Output file flag
-    if '--md' in args:
-        md_index = args.index('--md')
-        if md_index + 1 >= len(args):
-            print("Error: You used '--md' but did not specify an output file.")
-            sys.exit(1)
-        output_file = args[md_index + 1]
-        del args[md_index:md_index + 2]
-
-    # Summary flag
-    if '--summary' in args:
-        summary_index = args.index('--summary')
-        if summary_index + 1 >= len(args):
-            print("Error: You used '--summary' but did not provide a summary.")
-            sys.exit(1)
-        summary = args[summary_index + 1]
-        del args[summary_index:summary_index + 2]
 
     # Ignore flag
     if '--ignore' in args:
@@ -65,6 +47,24 @@ def main():
         ignore_list.update(args[ignore_index + 1].split(','))
         del args[ignore_index:ignore_index + 2]
 
+    # Output file flag
+    if '--output' in args:
+        output_index = args.index('--output')
+        if output_index + 1 >= len(args):
+            print("Error: You used '--output' but did not specify an output file.")
+            sys.exit(1)
+        output_file = args[output_index + 1]
+        del args[output_index:output_index + 2]
+
+    # Summary flag
+    if '--summary' in args:
+        summary_index = args.index('--summary')
+        if summary_index + 1 >= len(args):
+            print("Error: You used '--summary' but did not provide a summary.")
+            sys.exit(1)
+        summary = args[summary_index + 1]
+        del args[summary_index:summary_index + 2]
+
     # File specs
     file_specs = args
 
@@ -74,7 +74,7 @@ def main():
 
     if output_file is None and not PYPERCLIP_AVAILABLE:
         print("Error: pyperclip is not installed for clipboard copying. Install via 'pip install pyperclip',")
-        print("or use the '-m <OUTPUT.md>' option to write to a file instead.")
+        print("or use the '-o <OUTPUT.md>' option to write to a file instead.")
         sys.exit(1)
 
     content = []
