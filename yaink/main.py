@@ -11,11 +11,11 @@ except ImportError:
 def main():
     """
     Usage:
-      yaink [-r] [-o <OUTPUT.md>] [-s "your summary"] [-i "file_or_directory1,file_or_directory2"] <file or directory or file:range> [<file or directory or file:range> ...]
+      yaink [-s "Your summary"] [-o <output.md>] [-r] [-i "item1,item2,..."] <file|file:range|directory> [<file|file:range|directory> ...]
     """
 
     if len(sys.argv) < 2:
-        print("Usage: yaink [-r] [-o <OUTPUT.md>] [-s \"your summary\"] [-i \"file_or_directory1,file_or_directory2\"] <file or directory or file:range> ...")
+        print("Usage: yaink [-s \"Your summary\"] [-o <output.md>] [-r] [-i \"item1,item2,...\"] <file|file:range|directory> [<file|file:range|directory> ...]")
         sys.exit(1)
 
     args = sys.argv[1:]
