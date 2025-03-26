@@ -152,7 +152,7 @@ def main():
     concatenated_content = "".join(content)
 
     if summary:
-        concatenated_content = f"Summary:\n{summary}\n\n{concatenated_content}"
+        concatenated_content = f"{summary}\n\n{concatenated_content}"
 
     if output_file is None:
         pyperclip.copy(concatenated_content)
