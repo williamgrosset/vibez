@@ -4,11 +4,11 @@
 
 ## Overview
 
-`vibez` is a simple command-line tool that extracts file contents for use with LLMs.
+`vibez` is a command-line tool that extracts file contents for use with LLMs.
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some are more powerful, but heavyweight and expensive. For most prompts, these tools only need a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `vibez` is a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you prefer.
+The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some are more powerful, but heavyweight and expensive. For most prompts, you only need a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `vibez` is a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you prefer.
 
 ## Installation
 
