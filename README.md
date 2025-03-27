@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c4f6e72f-10ff-4ff9-a8e9-a5ead8fdb413" alt="Demo" />
+</p>
+
 ## Overview
 
 `yaink` is a simple command-line tool that extracts file contents for use with LLMs.
