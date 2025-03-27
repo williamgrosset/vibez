@@ -79,9 +79,9 @@ def main():
 
     content = []
 
-    def add_snippet_block(header, code):
-        if code.strip():
-            content.append(f"{header}:\n```\n{code}\n```\n")
+    def add_snippet_block(header, snippet):
+        if snippet.strip():
+            content.append(f"{header}:\n```\n{snippet}\n```\n")
 
     def process_file(filepath, line_range=None):
         if filepath in ignore_list:
@@ -156,7 +156,7 @@ def main():
 
     if output_file is None:
         pyperclip.copy(concatenated_content)
-        print("Code has been copied to the clipboard.")
+        print("Contents copied to clipboard.")
     else:
         with open(output_file, 'w', encoding='utf-8') as f_out:
             f_out.write(concatenated_content)
