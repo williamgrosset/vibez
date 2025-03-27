@@ -1,35 +1,35 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c4f6e72f-10ff-4ff9-a8e9-a5ead8fdb413" alt="Demo" />
+  <img src="https://github.com/user-attachments/assets/58a0f433-2271-49c8-ad80-3f56f060fce4" alt="Demo" />
 </p>
 
 ## Overview
 
-`yaink` is a simple command-line tool that extracts file contents for use with LLMs.
+`vibez` is a simple command-line tool that extracts file contents for use with LLMs.
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some are more powerful, but heavyweight and expensive. For most prompts, these tools only need a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `yaink` is a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you prefer.
+The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some are more powerful, but heavyweight and expensive. For most prompts, these tools only need a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `vibez` is a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you prefer.
 
 ## Installation
 
 Install with `pip`:
 
 ```sh
-pip install yaink
+pip install vibez
 ```
 
 Or install from source:
 
 ```sh
-git clone https://github.com/williamgrosset/yaink.git
-cd yaink
+git clone https://github.com/williamgrosset/vibez.git
+cd vibez
 pip install .
 ```
 
 ## Usage
 
 ```sh
-yaink [OPTIONS] <file|file:range|directory> [...]
+vibez [OPTIONS] <file|file:range|directory> [...]
 ```
 
 ### Options
@@ -44,43 +44,43 @@ yaink [OPTIONS] <file|file:range|directory> [...]
 #### Extract a single file to clipboard
 
 ```sh
-yaink file.py
+vibez file.py
 ```
 
 #### Extract specific lines from a file
 
 ```sh
-yaink file.py:5-15
+vibez file.py:5-15
 ```
 
 #### Extract multiple files and directories
 
 ```sh
-yaink notes.md file.py src/
+vibez notes.md file.py src/
 ```
 
 #### Recursively extract from a directory
 
 ```sh
-yaink -r src/
+vibez -r src/
 ```
 
 #### Ignore files or directories
 
 ```sh
-yaink -r src/ -i ".git,.gitignore"
+vibez -r dir/ -i "dir/.gitignore,dir/.git"
 ```
 
 #### Save output to a file
 
 ```sh
-yaink -o output.md file.py
+vibez -o output.md file.py
 ```
 
 #### Add a summary
 
 ```sh
-yaink -s "Add login functionality" auth.py
+vibez -s "Add login functionality" auth.py
 ```
 
 ### Output Format
