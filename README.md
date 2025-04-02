@@ -8,17 +8,17 @@
 
 ## Motivation
 
-The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some are more powerful, but heavyweight and expensive. For most prompts, you only need a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `vibez` is a pragmatic solution to this problem. Simply copy the file contents you need and use whatever AI tool you prefer.
+The developer AI workflow is messy. There are _many_ tools that integrate across the different stages of development and layers of the stack. Some tools are more powerful, but bloated, expensive, and tightly coupled with IDEs. For most prompts, you may only have a few requirements and only need to provide a limited amount of [context](https://en.wikipedia.org/wiki/Large_language_model#Prompt_engineering,_attention_mechanism,_and_context_window). `vibez` is a pragmatic solution. Simply copy the file contents you need and use whatever AI tool you prefer.
 
 ## Installation
 
-Install with `pip`:
+Install with `pipx`:
 
 ```sh
-pip install vibez
+pipx install vibez
 ```
 
-Or install from source:
+Or from source:
 
 ```sh
 git clone https://github.com/williamgrosset/vibez.git
